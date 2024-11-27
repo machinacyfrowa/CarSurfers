@@ -7,19 +7,31 @@ public class CarSpawnerScript : MonoBehaviour
     //prefabrykat samochodu jad¹cego z przodu
     public GameObject carPrefab;
     //co ile sekund ma siê pojawiæ nowy samochód
-    public float spawnInterval = 2;
+    public float spawnInterval = 1;
     // Start is called before the first frame update
     void Start()
     {
         //uruchamiamy funkcjê SpawnCar jako coroutine czyli funkcjê,
         //która dzia³a w tle
         StartCoroutine(SpawnCar());
+        //uruchamiamy funkcjê IncreaseSpeed jako coroutine
+        StartCoroutine(IncreaseSpeed());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    IEnumerator IncreaseSpeed()
+    {
+        while(true)
+        {
+            //poczekaj 10 sekund
+            yield return new WaitForSeconds(10);
+            //zwiêksz prêdkoœæ spawnowania samochodów o 5%
+            spawnInterval *= 0.95f;
+        }
     }
     IEnumerator SpawnCar()
     {

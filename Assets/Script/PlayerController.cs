@@ -75,4 +75,14 @@ public class PlayerController : MonoBehaviour
             isMoving = false;
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        //jeœli gracz uderzy³ w samochód
+        if (collision.gameObject.CompareTag("Car"))
+        {
+            //zatrzymaj grê
+            Time.timeScale = 0;
+            Debug.Log("Game Over");
+        }
+    }
 }
